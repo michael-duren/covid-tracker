@@ -1,0 +1,76 @@
+@implements IDisposable
+@inject NavigationManager NavigationManager
+@using Blazorise
+
+<div class="navbar bg-base-100">
+    <div class="flex-1">
+        <NavLink href="/" class="btn btn-ghost text-xl">
+            <Icon Name="IconName.StickyNote" IconSize="IconSize.x2"/>
+            Long Covid Symptom Tracker
+        </NavLink>
+    </div>
+    <AuthorizeView>
+        <Authorized>
+            <div class="flex-none">
+                <div class="dropdown dropdown-end">
+                    <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+                        <Icon Name="IconName.UserCircle" IconSize="IconSize.x2"/>
+                    </div>
+                    <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                        <li>
+                            <a class="justify-between">
+                                Profile
+                                <span class="badge">New</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a>Settings</a>
+                        </li>
+                        <li>
+                            <a>Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </Authorized>
+        <NotAuthorized>
+            <div class="flex-none">
+                <div class="dropdown dropdown-end">
+                    <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+                        <Icon Name="IconName.UserCircle" IconSize="IconSize.x2"/>
+                    </div>
+                    <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                        <li>
+                            <NavLink href="Account/Login">Login</NavLink>
+                        </li>
+                        <li>
+                            <NavLink href="Account/Register">Register</NavLink>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </NotAuthorized>
+    </AuthorizeView>
+</div>
+
+@code {
+    private string? currentUrl;
+
+    protected override void OnInitialized()
+    {
+        currentUrl = NavigationManager.ToBaseRelativePath(NavigationManager.Uri);
+        NavigationManager.LocationChanged += OnLocationChanged;
+    }
+
+    private void OnLocationChanged(object? sender, LocationChangedEventArgs e)
+    {
+        currentUrl = NavigationManager.ToBaseRelativePath(e.Location);
+        StateHasChanged();
+    }
+
+    public void Dispose()
+    {
+        NavigationManager.LocationChanged -= OnLocationChanged;
+    }
+
+}
