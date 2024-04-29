@@ -18,16 +18,24 @@
                     </div>
                     <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
                         <li>
-                            <a class="justify-between">
+                            <NavLink href="Account/Profile" class="justify-between">
                                 Profile
                                 <span class="badge">New</span>
-                            </a>
+                            </NavLink>
                         </li>
                         <li>
-                            <a>Settings</a>
+                            <NavLink href="Account/Manage">Manage</NavLink>
                         </li>
                         <li>
-                            <a>Logout</a>
+                            <form action="Account/Logout" method="post">
+                                <AntiforgeryToken/>
+                                <input type="hidden" name="ReturnUrl" value="@currentUrl"/>
+                                <button type="submit">
+                                    <span class="">
+                                        Logout
+                                    </span>
+                                </button>
+                            </form>
                         </li>
                     </ul>
                 </div>
