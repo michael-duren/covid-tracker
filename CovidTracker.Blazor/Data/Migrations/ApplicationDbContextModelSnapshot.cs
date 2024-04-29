@@ -20,7 +20,7 @@ namespace CovidTracker.Blazor.Migrations
 
             modelBuilder.Entity("CovidTracker.Blazor.Data.ApplicationUser", b =>
             {
-                b.Property<string>("Id")
+                b.Property<string>("ExerciseTypeId")
                     .HasColumnType("TEXT");
 
                 b.Property<int>("AccessFailedCount")
@@ -70,7 +70,7 @@ namespace CovidTracker.Blazor.Migrations
                     .HasMaxLength(256)
                     .HasColumnType("TEXT");
 
-                b.HasKey("Id");
+                b.HasKey("ExerciseTypeId");
 
                 b.HasIndex("NormalizedEmail")
                     .HasDatabaseName("EmailIndex");
@@ -84,14 +84,14 @@ namespace CovidTracker.Blazor.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
             {
-                b.Property<string>("Id")
+                b.Property<string>("ExerciseTypeId")
                     .HasColumnType("TEXT");
 
                 b.Property<string>("ConcurrencyStamp")
                     .IsConcurrencyToken()
                     .HasColumnType("TEXT");
 
-                b.Property<string>("Name")
+                b.Property<string>("ExerciseName")
                     .HasMaxLength(256)
                     .HasColumnType("TEXT");
 
@@ -99,7 +99,7 @@ namespace CovidTracker.Blazor.Migrations
                     .HasMaxLength(256)
                     .HasColumnType("TEXT");
 
-                b.HasKey("Id");
+                b.HasKey("ExerciseTypeId");
 
                 b.HasIndex("NormalizedName")
                     .IsUnique()
@@ -110,7 +110,7 @@ namespace CovidTracker.Blazor.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
             {
-                b.Property<int>("Id")
+                b.Property<int>("ExerciseTypeId")
                     .ValueGeneratedOnAdd()
                     .HasColumnType("INTEGER");
 
@@ -124,7 +124,7 @@ namespace CovidTracker.Blazor.Migrations
                     .IsRequired()
                     .HasColumnType("TEXT");
 
-                b.HasKey("Id");
+                b.HasKey("ExerciseTypeId");
 
                 b.HasIndex("RoleId");
 
@@ -133,7 +133,7 @@ namespace CovidTracker.Blazor.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
             {
-                b.Property<int>("Id")
+                b.Property<int>("ExerciseTypeId")
                     .ValueGeneratedOnAdd()
                     .HasColumnType("INTEGER");
 
@@ -147,7 +147,7 @@ namespace CovidTracker.Blazor.Migrations
                     .IsRequired()
                     .HasColumnType("TEXT");
 
-                b.HasKey("Id");
+                b.HasKey("ExerciseTypeId");
 
                 b.HasIndex("UserId");
 
@@ -199,13 +199,13 @@ namespace CovidTracker.Blazor.Migrations
                 b.Property<string>("LoginProvider")
                     .HasColumnType("TEXT");
 
-                b.Property<string>("Name")
+                b.Property<string>("ExerciseName")
                     .HasColumnType("TEXT");
 
                 b.Property<string>("Value")
                     .HasColumnType("TEXT");
 
-                b.HasKey("UserId", "LoginProvider", "Name");
+                b.HasKey("UserId", "LoginProvider", "ExerciseName");
 
                 b.ToTable("AspNetUserTokens", (string)null);
             });
